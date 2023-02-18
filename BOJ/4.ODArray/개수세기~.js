@@ -137,12 +137,11 @@
   const answer = caseArr.map((v) => returnScore(v)).join('\n');
   console.log(answer);
 
-  function returnScore(oxstr) {
-    const ox = oxstr;
+  function returnScore(ox) {
     const l = ox.length;
     let count = 0;
     const scoreArr = [];
-    const arr = ox.split('').forEach((v, i) => {
+    const arr = ox.split('').forEach((v) => {
       if (v === `O`) {
         count++;
         scoreArr.push(count);
@@ -152,5 +151,23 @@
     });
     score = scoreArr.reduce((a, c) => a + c, 0); //
     return score;
+  }
+} // 문제를 처음에 잘못이해해서 복잡한 풀이가 되어버림.
+
+{
+  // returnScore() 만 조금 변경해주었다.
+  function returnScore(ox) {
+    const l = ox.length;
+    let count = 0;
+    const scoreArr = [];
+    ox.split('').forEach((v) => {
+      if (v === `O`) {
+        count++;
+        scoreArr.push(count);
+      } else {
+        count = 0;
+      }
+    });
+    return scoreArr.reduce((a, c) => a + c, 0);
   }
 }
