@@ -100,3 +100,15 @@
   console.log(maximumNum);
   console.log(inputArr.indexOf(maximumNum) + 1);
 }
+
+{
+  // 3052 나머지
+  const fs = require('fs');
+  const inputArray = `${fs.readFileSync('dev/stdin')}`
+    .trim()
+    .split(/\s/)
+    .map(Number);
+  const divNumArr = inputArray.map((v) => v % 42);
+  const deduplicationSet = new Set(divNumArr);
+  console.log(deduplicationSet.size);
+}
