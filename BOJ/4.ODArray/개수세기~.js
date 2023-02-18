@@ -128,3 +128,29 @@
     .reduce((a, c) => a + c, 0);
   console.log(average);
 }
+
+{
+  // 8958 OX퀴즈
+  const fs = require('fs');
+  const inputArray = `${fs.readFileSync('dev/stdin')}`.trim().split(`\n`);
+  const [caseNum, ...caseArr] = inputArray;
+  const answer = caseArr.map((v) => returnScore(v)).join('\n');
+  console.log(answer);
+
+  function returnScore(oxstr) {
+    const ox = oxstr;
+    const l = ox.length;
+    let count = 0;
+    const scoreArr = [];
+    const arr = ox.split('').forEach((v, i) => {
+      if (v === `O`) {
+        count++;
+        scoreArr.push(count);
+      } else {
+        count = 0;
+      }
+    });
+    score = scoreArr.reduce((a, c) => a + c, 0); //
+    return score;
+  }
+}
