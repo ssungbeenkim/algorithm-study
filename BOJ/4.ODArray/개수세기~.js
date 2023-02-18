@@ -65,3 +65,19 @@
   console.log(Math.min(...InputNumbers));
   console.log(Math.max(...InputNumbers));
 }
+
+{
+  // 5597 과제 안낸놈 나와
+  const fs = require('fs');
+  const inputArray = `${fs.readFileSync('dev/stdin')}`
+    .trim()
+    .split(/\s/)
+    .map(Number);
+  const unSubmission = [];
+  for (i = 1; i <= 30; i++) {
+    if (!inputArray.includes(i)) {
+      unSubmission.push(i);
+    }
+  }
+  console.log(unSubmission.join('\n'));
+}
