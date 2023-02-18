@@ -112,3 +112,19 @@
   const deduplicationSet = new Set(divNumArr);
   console.log(deduplicationSet.size);
 }
+
+{
+  // 1546 평균
+  const fs = require('fs');
+  const inputArray = `${fs.readFileSync('dev/stdin')}`
+    .trim()
+    .split(/\s/)
+    .map(Number);
+  const [subNum, ...scores] = inputArray;
+  const M = Math.max(...scores);
+
+  const average = scores
+    .map((v) => ((v / M) * 100) / subNum)
+    .reduce((a, c) => a + c, 0);
+  console.log(average);
+}
