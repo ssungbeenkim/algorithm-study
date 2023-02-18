@@ -51,3 +51,17 @@
   const answer = numbers.filter((v) => v < n).join(' ');
   console.log(answer);
 }
+
+{
+  //10818 최소, 최대
+  const fs = require('fs');
+  const input = `${fs.readFileSync('dev/stdin')}`
+    .trim()
+    .split(/\s/)
+    .map(Number);
+
+  const [numberOfInputs, ...InputNumbers] = input;
+
+  console.log(Math.min(...InputNumbers));
+  console.log(Math.max(...InputNumbers));
+}
