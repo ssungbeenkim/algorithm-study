@@ -171,3 +171,32 @@
     return scoreArr.reduce((a, c) => a + c, 0);
   }
 }
+
+{
+  // 4344 평균은 넘겠지
+  const inputArr = `5
+5 50 50 70 80 100
+7 100 95 90 80 70 60 50
+3 70 90 80
+3 70 90 81
+9 100 99 98 97 96 95 94 93 91`
+    .trim()
+    .split(`\n`);
+  const answerArr = [];
+  inputArr.slice(1).forEach(pushRatio);
+  console.log(answerArr.join('\n'));
+
+  function pushRatio(caseClass) {
+    const scoreArr = caseClass.split(' ').map(Number).slice(1);
+    const average = scoreArr.reduce((a, c) => a + c / scoreArr.length, 0);
+    let aboveCount = 0;
+    scoreArr.forEach((v) => {
+      if (average < v) {
+        aboveCount++;
+      }
+    });
+
+    const num = ((aboveCount / caseClass[0]) * 100).toFixed(3);
+    answerArr.push(`${num}%`);
+  }
+}
