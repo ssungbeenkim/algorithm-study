@@ -18,7 +18,7 @@
     const num = ((aboveCount / caseClass[0]) * 100).toFixed(3);
     console.log(`${num}%`);
   }
-} // 정상적으로 출력이 되는 것 같은데 왜 틀렸다고 하는지 모르겠다. 이럴때 혼란에 빠진다.
+} // 정상적으로 출력이 되는 것 같은데 왜 틀렸다고 하는지 모르겠다.
 {
   const fs = require('fs');
   const inputArr = `${fs.readFileSync('dev/stdin')}`.trim().split(`\n`);

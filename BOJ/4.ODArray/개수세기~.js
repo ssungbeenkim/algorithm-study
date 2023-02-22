@@ -174,14 +174,28 @@
 
 {
   // 4344 평균은 넘겠지
-  const inputArr = `5
-5 50 50 70 80 100
-7 100 95 90 80 70 60 50
-3 70 90 80
-3 70 90 81
-9 100 99 98 97 96 95 94 93 91`
-    .trim()
-    .split(`\n`);
+  const fs = require('fs');
+  const inputArr = `${fs.readFileSync('dev/stdin')}`.trim().split(`\n`);
+  const caseArr = inputArr.slice(1);
+  caseArr.forEach(printRatio);
+
+  function printRatio(caseClass) {
+    const scoreArr = caseClass.split(' ').map(Number).slice(1);
+    const average = scoreArr.reduce((a, c) => a + c / scoreArr.length, 0);
+    let aboveCount = 0;
+    scoreArr.forEach((v) => {
+      if (average < v) {
+        aboveCount++;
+      }
+    });
+
+    const num = ((aboveCount / caseClass[0]) * 100).toFixed(3);
+    console.log(`${num}%`);
+  }
+} // 정상적으로 출력이 되는 것 같은데 왜 틀렸다고 하는지 모르겠다. 이럴때 혼란에 빠진다.
+{
+  const fs = require('fs');
+  const inputArr = `${fs.readFileSync('dev/stdin')}`.trim().split(`\n`);
   const answerArr = [];
   inputArr.slice(1).forEach(pushRatio);
   console.log(answerArr.join('\n'));
@@ -196,7 +210,9 @@
       }
     });
 
-    const num = ((aboveCount / caseClass[0]) * 100).toFixed(3);
+    const num = ((aboveCount / scoreArr.length) * 100).toFixed(3);
     answerArr.push(`${num}%`);
   }
-}
+} // 하나씩 출력하는게 문제인가 싶어서 아예 줄바꿈을 해서 출력했는데도 안되고 있음. 질문 남기고 미제로 남기기
+
+// 다시 보니 문제가 사라졌다. 그리고 새로운 문제들이 생기는 등 개편이 되었다. 그래서 그냥 넘어가기로...
