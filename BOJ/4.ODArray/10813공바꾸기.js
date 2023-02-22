@@ -27,3 +27,26 @@ inputArr.slice(1).forEach((v) => {
   ballDillBasket[j - 1] = I;
 });
 console.log(ballDillBasket.join(' '));
+
+{
+  // 좀더 깔끔하게
+  const inputArr = `5 4
+1 2
+3 4
+1 4
+2 2`
+    .trim()
+    .split(`\n`)
+    .map((v) => {
+      return v.split(' ').map(Number);
+    });
+
+  const [N, M] = inputArr[0];
+  const Basket = Array.from({ length: N }, (_, i) => i + 1);
+  inputArr.slice(1).forEach((v) => {
+    const [i, j] = v;
+    const [I, J] = [Basket[i - 1], Basket[j - 1]];
+    [Basket[i - 1], Basket[j - 1]] = [J, I];
+  });
+  console.log(Basket.join(' '));
+}
