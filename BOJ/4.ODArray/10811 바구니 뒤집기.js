@@ -57,5 +57,25 @@ inputArr.slice(1).forEach((v) => {
     reverseBaskets = baskets.splice(i - 1, j - i + 1).reverse();
     baskets.splice(i - 1, 0, ...reverseBaskets);
   });
+  console.log(baskets.join(' '));
+} // 근데 이것보다 포인터 두개를 활용해서 뒤집는 방법이 시간복잡도가 더 낫다고 한다.
+// 하지만 백준에서는 메모리와 시간이 별 차이가 없고 오히려 느려보여서 pass 한다.
+
+{
+  // 두개의 포인터로 순서를 바꾸기
+  const [N, M] = inputArr[0];
+  const baskets = Array.from({ length: N }, (_, i) => i + 1);
+
+  inputArr.slice(1).forEach((v) => {
+    const [i, j] = v;
+    let left = i - 1;
+    let right = j - 1;
+    while (left < right) {
+      [baskets[left], baskets[right]] = [baskets[right], baskets[left]];
+      left++;
+      right--;
+    }
+  });
+
   console.log(baskets);
 }
