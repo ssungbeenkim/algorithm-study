@@ -5,3 +5,4 @@
 
 const str = 'asdf';
 console.log(str.indexOf(a));
+//
