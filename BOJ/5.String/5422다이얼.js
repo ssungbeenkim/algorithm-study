@@ -30,3 +30,44 @@ charCodeArr.forEach((v) => {
 });
 
 console.log(decodedNumArr.map((v) => v + 1).reduce((a, c) => a + c, 0));
+
+// 더나은 풀이
+// 너무 하드코딩한 느낌이 있어서 더 나은 풀이를 찾아봤다.
+{
+  let input = `UNUCIC`.toString().split('');
+  let charMap = {};
+  let charStack = '';
+  let counter = 3;
+
+  // for문을 활용해 아스키코드 A~Z에 해당하는 값을 순서로 받아와 문자열로 아루어진 키값과 숫자를 차례로 오브젝트에 추가해 준다.
+  // 문자를 받아와서 그것에 해당하는 숫자를 찾을 때 활용할 Map을 만드는 것이다.
+  for (let i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(); i++) {
+    charStack += String.fromCharCode(i);
+
+    if (
+      charStack.length === 3 && //받은 문자의 길이가 3
+      i !== 'R'.charCodeAt(0) && //길이가 W3기 되기 전에 차단
+      i !== 'Y'.charCodeAt(0)
+    ) {
+      charMap[charStack] = counter;
+      counter++;
+      charStack = ''; //그리고 charstack은 다시 초기화를 시켜줌
+    } else if (charStack.length === 4) {
+      //받은 문자의 길이가 4일때에 해당. 예외 처리.
+      charMap[charStack] = counter;
+      counter++;
+      charStack = '';
+    }
+  }
+
+  let result = input.reduce((acc, char) => {
+    for (let key in charMap) {
+      if (key.includes(char)) {
+        acc += charMap[key];
+      }
+    }
+    return acc;
+  }, 0);
+
+  console.log(result);
+}
