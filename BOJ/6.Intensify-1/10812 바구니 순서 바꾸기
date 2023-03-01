@@ -64,3 +64,24 @@ console.log(basketArr.join(' '));
   });
   console.log(basketArr.join(' '));
 }
+
+{
+  const [[N, M], ...protocolArr] = `10 5
+1 6 4
+3 9 8
+2 10 5
+1 3 3
+2 6 2`
+    .trim()
+    .split('\n')
+    .map((v) => v.trim().split(' ').map(Number));
+  const basketArr = Array.from({ length: N }, (_, i) => i + 1); // 1 ~ N 배열만들기
+  protocolArr.forEach((protocol) => {
+    const [i, j, k] = protocol;
+    const beforeBaskets = basketArr.slice(i - 1, k - 1);
+    const afterBaskets = basketArr.slice(k - 1, j);
+    const handledBaskets = [...afterBaskets, ...beforeBaskets];
+    basketArr.splice(i - 1, j - i + 1, ...handledBaskets);
+  });
+  console.log(basketArr.join(' '));
+}
