@@ -34,8 +34,8 @@ console.log(decodedNumArr.map((v) => v + 1).reduce((a, c) => a + c, 0));
 // 더나은 풀이
 // 너무 하드코딩한 느낌이 있어서 더 나은 풀이를 찾아봤다.
 {
-  let input = `UNUCIC`.toString().split('');
-  let charMap = {};
+  const input = `UNUCIC`.toString().split('');
+  const charMap = {};
   let charStack = '';
   let counter = 3;
 
@@ -71,3 +71,57 @@ console.log(decodedNumArr.map((v) => v + 1).reduce((a, c) => a + c, 0));
 
   console.log(result);
 }
+
+// 다시 한번 떠올려가면서 풀어봤다.
+{
+  const input = `UNUCIC`.split('');
+  const charTimeObj = {};
+  let charStack = '';
+  let count = 3;
+
+  // charTimeObj 제조기
+  for (let i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++) {
+    charStack += String.fromCharCode(i);
+    if (
+      charStack.length === 3 &&
+      i !== 'R'.charCodeAt(0) &&
+      i !== 'Y'.charCodeAt(0)
+    ) {
+      charTimeObj[charStack] = count;
+      count++;
+      charStack = '';
+    } else if (charStack.length === 4) {
+      charTimeObj[charStack] = count;
+      count++;
+      charStack = '';
+    }
+  }
+
+  /* 
+reduce 로 따로 합산한 값을 담을 변수 선언 없이 내부적으로 처리해줄 수 있는데, 
+사실 result에 할당해주게 되는 것이므로 비슷하다고 볼 수도 있겠다는 생각이 든다. 
+ */
+  const result = input.reduce((a, c) => {
+    for (let char in charTimeObj) {
+      if (char.includes(c)) {
+        a += charTimeObj[char];
+      }
+    }
+    return a;
+  }, 0);
+
+  console.log(result);
+
+  // {
+  //   let sum = 0;
+  //   input.forEach((v) => {
+  //     for (let char in charTimeObj) {
+  //       if (char.includes(v)) {
+  //         sum += charTimeObj[char];
+  //       }
+  //     }
+  //   });
+
+  //   console.log(sum);
+  // }
+} // reduce를 저렇게 사용하는 것이 인상깊음
