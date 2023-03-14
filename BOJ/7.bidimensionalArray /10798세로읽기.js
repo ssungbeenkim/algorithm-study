@@ -25,7 +25,7 @@ const maxLength = inputArr.reduce((max, row) => {
 }, 0);
 
 let answerArr = [];
-for (i = 0; i < maxLength; i++) {
+for (let i = 0; i < maxLength; i++) {
   inputArr.forEach((arr) => {
     arr[i] && answerArr.push(arr[i]);
   });
