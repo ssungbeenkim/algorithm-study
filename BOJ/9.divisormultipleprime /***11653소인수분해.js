@@ -1,3 +1,4 @@
+'use strict';
 /* 수가 주어지면 소인수분해 */
 // 2부터 시작
 // 재귀함수로 만들면 어떨까 싶네
@@ -15,12 +16,12 @@ while (num !== 1) {
   divNum++;
 }
 
-function Divide(n, divide) {
-  if (n % divide === 0) {
-    n = n / divide;
-    answerArr.push(divide);
+function Divide(n, divideNum) {
+  if (n % divideNum === 0) {
+    n = n / divideNum;
+    answerArr.push(divideNum);
     if (n !== 1) {
-      n = Divide(n, divide);
+      n = Divide(n, divideNum);
     }
   }
   return n;

@@ -1,35 +1,30 @@
-//두 수 포함사이 소수 찾기
-// 반복문 돌리고 소수판별 해서 맞으면 배열에 넣고 마직막에 더해버리기. but 배열에 암것도없으면 -1출력
-const [m, n] = `${require('fs').readFileSync('dev/stdin')}`
-  .trim()
-  .split(/\s/)
-  .map(Number);
+/* 수가 주어지면 소인수분해 */
+// 2부터 시작
+// 재귀함수로 만들면 어떨까 싶네
+// let num = 주어진수
+// 나누는수 2부터 시작 2로 나눠지면 나누고 정답배열에 넣고 재귀. 나눠지면 또 재귀.
+// 안나눠지면 넘어가고++
+// num =1이 될때까지 반복
+//${require('fs').readFileSync('dev/stdin')}
+const input = `100`.trim();
+let num = Number(input);
+let divNum = 2;
+const answerArr = [];
 
-const primeArr = [];
+while (num !== 1) {
+  Divide(num, divNum);
+  divNum++;
+  console.log(divNum);
+}
 
-for (let i = m; i <= n; i++) {
-  if (isPrime(i)) {
-    primeArr.push(i);
-  }
-}
-if (primeArr.length !== 0) {
-  console.log(
-    `${primeArr.reduce((a, c) => a + c, 0)}\n${Math.min(...primeArr)}`
-  );
-} else {
-  console.log(-1);
-}
-// 소수감별사 등장 두둥탁
-function isPrime(n) {
-  const divisorArr = [];
-  for (i = 1; i <= n; i++) {
-    if (n % i === 0) {
-      divisorArr.push(i);
+function Divide(num, divide) {
+  if (num % divide === 0) {
+    num = num / divide;
+    answerArr.push(divide);
+    if (num !== 1) {
+      Divide(num, divide);
     }
   }
-  if (divisorArr.length === 2) {
-    return true;
-  } else {
-    return false;
-  }
 }
+
+answerArr.length !== 0 && console.log(answerArr.join('\n'));
