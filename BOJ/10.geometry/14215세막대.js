@@ -3,10 +3,14 @@
 
 // 두 변의 합이 가장 긴 변보다 작은 경우에는 그냥 세 변을 더하면 둘레가 된다.
 
-const [a, b, c] = `3 4 5`
+const [a, b, c] = `${require('fs').readFileSync('dev/stdin')}`
   .trim()
   .split(/\s/)
   .map(Number)
-  .sort((a, b) => a - b);
+  .sort((a, b) => a - b); // 오름차순으로 정렬
 
-console.log(a, b, c);
+if (c < a + b) {
+  console.log(a + b + c);
+} else {
+  console.log((a + b) * 2 - 1);
+}
