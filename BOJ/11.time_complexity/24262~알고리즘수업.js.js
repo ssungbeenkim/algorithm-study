@@ -41,3 +41,11 @@
   console.log((n * (n - 1)) / 2);
   console.log(2);
 }
+
+{
+  // 24266
+  const input = `${require('fs').readFileSync('dev/stdin')}`.trim();
+  const n = BigInt(input);
+  console.log(`${n ** 3n}`);
+  console.log(3);
+} // 입력값의 범위가 BigInt일 수 있어서 틀렸었다.
