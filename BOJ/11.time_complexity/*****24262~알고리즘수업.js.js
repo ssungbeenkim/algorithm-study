@@ -49,3 +49,24 @@
   console.log(`${n ** 3n}`);
   console.log(3);
 } // 입력값의 범위가 BigInt일 수 있어서 틀렸었다.
+
+{
+  // 24267 *
+  // 내가 찾은 문제도 맞았고, 조합도 맞았다.
+  // 풀이는
+  const n = BigInt(`${require('fs').readFileSync('dev/stdin')}`);
+  let sum = BigInt(0);
+  for (let i = BigInt(1); i <= n - BigInt(2); i++) {
+    sum = sum + (i * (i + BigInt(1))) / BigInt(2);
+  }
+
+  console.log(sum.toString());
+  console.log('3');
+}
+{
+  const n = `${require('fs').readFileSync('dev/stdin')}`.trim() * 1;
+  console.log(`${(BigInt(n) * BigInt(n - 1) * BigInt(n - 2)) / BigInt(6)}`);
+  console.log(3);
+}
+
+// bigint 계산이 참 뭐같다..
