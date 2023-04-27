@@ -63,10 +63,11 @@
   console.log(sum.toString());
   console.log('3');
 }
-{ // 내가 찾은 방법으로 풀려면 이렇게. bigInt끼리 계산되도록 해야 한다. 
+{
+  // 내가 찾은 방법으로 풀려면 이렇게. bigInt끼리 계산되도록 해야 한다.
   const n = `${require('fs').readFileSync('dev/stdin')}`.trim() * 1;
   console.log(`${(BigInt(n) * BigInt(n - 1) * BigInt(n - 2)) / BigInt(6)}`);
   console.log(3);
 }
 
-// bigint 계산이 참 뭐같다..
+// bigint 계산에 주의할것.
