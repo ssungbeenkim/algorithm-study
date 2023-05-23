@@ -12,11 +12,11 @@ count 가 input과 같아지면 break 하고 해당 수 return
 const input = 500;
 
 function findEndNum(n) {
+  const searchString = '666';
   let count = 0;
   let i = 666;
-  const searchString = '666';
   while (true) {
-    JSON.stringify(i).includes(searchString) && count++;
+    i.toString().includes(searchString) && count++;
     if (count === n) {
       return i;
     }
