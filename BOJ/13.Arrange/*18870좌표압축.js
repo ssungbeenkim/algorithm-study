@@ -76,3 +76,4 @@
   console.log(answer);
   console.timeEnd('third');
 } // 정답. console.time으로는 별 차이 안나는 것 같은데, 인풋이 많아지면 성능 차이가 큰가보다.
+// 반복문 돌려서 파악하는 것보다 그냥 정렬 하고 시작하는게 포인트였다.
