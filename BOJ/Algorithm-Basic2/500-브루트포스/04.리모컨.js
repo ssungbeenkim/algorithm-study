@@ -8,9 +8,10 @@
 1. 남은 버튼으로 목표수와 가장 가까운 수를 찾는다.  
 2. 100과 목표수의 차이와 비교하여 차이가 더 작은 것을 고른다. */
 
-const [goal, _, ...err] = `103
-5
-2 3 5 7 8`
+const [goal, _, ...err] = `1000
+2
+0 1
+` // 질문으로부터 받은 반례.
   .trim()
   .split(/\s/)
   .map(Number);
@@ -48,7 +49,7 @@ function findClosestNumber(currentNumber, currentIndex) {
   }
 }
 
-findClosestNumber(new Array(length), 0); // ClosestNumber에 저장된다.
+findClosestNumber(new Array(length), 0);
 // 100에서 직접 변경할 때의 차이와 가까운 번호에서의 차를 비교하여 절댓값이 더 적은것을 출력.
 const searchDiff = closestDifference + length;
 const diff = Math.abs(goal - 100);
