@@ -10,7 +10,7 @@ empty: 큐가 비어있으면 1, 아니면 0을 출력한다.
 front: 큐의 가장 앞에 있는 정수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
 back: 큐의 가장 뒤에 있는 정수를 출력한다. 만약 큐에 들어있는 정수가 없는 경우에는 -1을 출력한다.
 ----
-큐를 구현한다. stack과 달리 LIFO로 구현해야 한다. 
+큐를 구현한다. stack과 달리 FIFO로 구현해야 한다. 
 어떻게 구현할 수 있을까?
 순서가 있다. 앞의 노드를 바라보도록 한다. 
 push는 stack과 동일하게 하면 될 것 같고, 
@@ -84,7 +84,6 @@ class Queue {
     return this.tail ? this.tail.value : -1;
   }
 }
-
 const q = new Queue();
 
 input.forEach((c) => {
@@ -111,3 +110,7 @@ input.forEach((c) => {
 });
 
 console.log(ans.join('\n'));
+// 정답.
+/* 생각해보니 단일 연결로도 충분히 만들 수 있었을 것 같다. next가 뒤의 값이 되게 하면 값을 넣을 때 tail에
+있는 값에 접근해서 next를 바꿔주고 tail에 새로운 노드를 할당하고, 값을 뺄 때는 head에 접근해서 next로
+head를 바꿔주면 되니까.  */
