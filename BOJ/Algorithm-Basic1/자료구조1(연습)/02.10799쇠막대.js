@@ -30,4 +30,4 @@ for (c of str) {
 
 console.log(stickCount);
 
-// 다른 사람의 풀이도 궁금해서 찾아봄
+// 다른 사람의 풀이도 궁금해서 찾아봄 - 비슷하게 풀었다.
