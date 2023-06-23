@@ -53,15 +53,18 @@
   });
 
   console.log(answer.join(' '));
-} // 시간초과
+} // 시간초과. 1% 에서 38%까지 개선은 된 것 같은데 아직 무리인가보다.
 
 //다른 풀이를 참고해서 보도록 하고 왜 더 빠른지 등에 대해 확인하고 정리하도록 하자.
 
 {
-  const [n, ...seq] = `4 4 7 3 4`.trim().split(/\s/).map(Number);
+  const [n, ...seq] = `4 
+  4 7 3 4`
+    .trim()
+    .split(/\s/)
+    .map(Number);
 
   function solution(n, seq) {
-    // 4 7 3 4
     let stk = [];
     for (let i = 0; i < n; i += 1) {
       while (stk.length && seq[stk[stk.length - 1]] < seq[i]) {
@@ -93,3 +96,95 @@
 모든 요소만큼 반복문들 도는 것이 아니라 자동으로 최소값이 마지막에 들어가는 스택의 마지막 값과 비교해서  
 행동을 결정하므로 반복문 도는 것을 최소화 할 수 있다. 
 */
+{
+  class Stack {
+    size = 0;
+    head;
+
+    push = (item) => {
+      const node = { item: Number(item), next: this.head };
+      this.head = node;
+      this.size++;
+    };
+
+    pop = () => {
+      if (this.head == null) {
+        return;
+      } else {
+        const node = this.head;
+        this.head = node.next;
+        this.size--;
+        return node.item;
+      }
+    };
+  }
+
+  const [n, ...seq] = `4 
+    4 7 3 4`
+    .trim()
+    .split(/\s/)
+    .map(Number);
+
+  function solution(n, seq) {
+    const stk = new Stack();
+    for (let i = 0; i < n; i += 1) {
+      while (stk.size && seq[stk[stk.size - 1]] < seq[i]) {
+        seq[stk.pop()] = seq[i];
+      }
+      stk.push(i);
+    }
+
+    while (stk.size) {
+      seq[stk.pop()] = -1;
+    }
+
+    console.log(seq.join(' '));
+  }
+
+  solution(n, seq);
+}
+
+{
+  // 스택을 구현해서 해 봤을 때와의 성능차이가 궁금해서 해봄
+  const [n, ...seq] = `4
+3 5 2 7`
+    .trim()
+    .split(/\s/)
+    .map(Number);
+
+  class Stack {
+    size = 0;
+    head;
+
+    push = (item) => {
+      const node = { item: Number(item), next: this.head };
+      this.head = node;
+      this.size++;
+    };
+
+    pop = () => {
+      if (this.head == null) {
+        return;
+      } else {
+        const node = this.head;
+        this.head = node.next;
+        this.size--;
+        return node.item;
+      }
+    };
+  }
+
+  const stk = new Stack();
+  for (let i = 0; i < n; i += 1) {
+    while (stk.size && seq[stk.head.item] < seq[i]) {
+      seq[stk.pop()] = seq[i];
+    }
+    stk.push(i);
+  }
+  while (stk.size) {
+    seq[stk.pop()] = -1;
+  }
+
+  console.log(seq.join(' '));
+}
+// 메모리는 덜드는데 시간은 더걸림. 그리고 차이가 미묘하다. 대부분의 경우 그냥 배열을 써도 좋겠다.
