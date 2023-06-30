@@ -193,3 +193,29 @@
     return `Goldbach's conjecture is wrong.`;
   }
 } // 문제는 a와 b가 같아질 수 있다는 것이었다. 6의 경우 3 + 3으로 나타낼 수 있기에 절반까지는 찾아야 했던 것이었다.
+
+{
+  // 소수 구하는 부분은 다음과 같이 더 효율적으로 작성이 가능하다.
+  const arr = `8
+20
+42
+0`
+    .trim()
+    .split(/\s/)
+    .map(Number);
+  arr.pop();
+  const ans = [];
+  const maxNum = Math.max(...arr);
+
+  // 가장 큰 수까지의 소수 목록을 index:boolian으로 저장한다.
+  const primes = new Array(maxNum + 1).fill(true);
+  primes[0] = primes[1] = false;
+
+  for (let i = 2; i <= Math.sqrt(maxNum); i++) {
+    if (primes[i]) {
+      for (let j = i * i; j <= maxNum; j += i) {
+        primes[j] = false;
+      }
+    }
+  }
+}
