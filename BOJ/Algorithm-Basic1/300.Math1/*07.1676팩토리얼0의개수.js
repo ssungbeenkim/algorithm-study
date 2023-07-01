@@ -17,3 +17,17 @@ for (i = 1; i < n + 1; i++) {
 console.log(count);
 
 // 소인수의 5가 몇개인지 세면 0의 개수가 된다.
+{
+  // 개선된 풀이
+  const n = Number(`19`.trim());
+
+  console.log(xInN(n, 5));
+
+  function xInN(n, x) {
+    let count = 0;
+    for (let i = n; x <= i; i /= x) {
+      count += Math.trunc(i / x);
+    }
+    return count;
+  }
+}
