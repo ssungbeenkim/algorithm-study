@@ -208,7 +208,7 @@
   const maxNum = Math.max(...arr);
 
   // 가장 큰 수까지의 소수 목록을 index:boolian으로 저장한다.
-  const primes = new Array(maxNum + 1).fill(true);
+  const primㅌes = new Array(maxNum + 1).fill(true);
   primes[0] = primes[1] = false;
 
   for (let i = 2; i <= Math.sqrt(maxNum); i++) {
