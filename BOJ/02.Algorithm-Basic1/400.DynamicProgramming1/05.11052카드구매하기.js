@@ -17,7 +17,6 @@ const dp = Array(n).fill(0);
 for (let i = 1; i < n + 1; i++) {
   const cas = [];
   for (let j = i; 0 < j; j--) {
-    // console.log(i, j, p[j - 1], dp[i - j]);
     cas.push(p[j - 1] + dp[i - j]);
   }
   dp[i] = Math.max(...cas);
