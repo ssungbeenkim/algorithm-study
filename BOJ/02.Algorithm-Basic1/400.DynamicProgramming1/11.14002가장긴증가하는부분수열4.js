@@ -4,31 +4,37 @@
 이번에는 slice하지 않고 for문을 돌면서해결하도록 문제도 바꿔보도록 하자. 
 */
 
-const [n, ...input] = `6
-10 20 10 30 20 50`
+const [n, ...input] = `1
+1`
   .trim()
   .split(/\s/)
   .map(Number);
 const dp = Array(n);
 let [best, index] = [0, 0];
 
-input.forEach((v, i) => {
-  if (i === 0) {
-    dp[i] = [input[0]];
-  } else {
-    let elr = [];
-    input.slice(0, i).forEach((n, j) => {
-      if (n < v && dp[j].length > elr.length) {
-        elr = [...dp[j]];
+if (n === 1) {
+  console.log(`1\n${input[0]}`);
+} else {
+  input.forEach((v, i) => {
+    if (i === 0) {
+      dp[i] = [input[0]];
+    } else {
+      let elr = [];
+      input.slice(0, i).forEach((n, j) => {
+        if (n < v && dp[j].length > elr.length) {
+          elr = [...dp[j]];
+        }
+      });
+      elr.push(v);
+      dp[i] = elr;
+      if (best < elr.length) {
+        best = elr.length;
+        index = i;
       }
-    });
-    elr.push(v);
-    dp[i] = elr;
-    if (best < elr.length) {
-      best = elr.length;
-      index = i;
     }
-  }
-});
+  });
 
-console.log(`${best}\n${dp[index].join(' ')}`);
+  console.log(`${best}\n${dp[index].join(' ')}`);
+}
+
+// 98%에서 틀려서 1일 경우를 추가해 주었다.
