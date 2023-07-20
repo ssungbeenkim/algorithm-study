@@ -74,4 +74,27 @@ sum + nums < 0 이면 sum을 0 으로 초기화 해 주어 다음 값부터 계�
   console.log(ans);
 }
 
-//
+//최종 수정
+{
+  const [n, ...input] = `5
+-5 -4 -3 -2 -1`
+    .split(/\s/)
+    .map(Number);
+  let ans = input[0];
+
+  let sum = ans < 0 ? 0 : ans;
+
+  for (let i = 1; i < n; i++) {
+    const cur = sum + input[i];
+    if (ans < cur) {
+      ans = cur;
+    }
+    if (cur < 0) {
+      sum = 0;
+    } else {
+      sum = cur;
+    }
+  }
+
+  console.log(ans);
+}
