@@ -41,11 +41,13 @@ https://blog.naver.com/occidere/220792326120
 
 const n = Number(`43`.trim());
 const d = [];
+// d[n] = n 으로 초기화 해 준다.
 for (i = 0; i <= n; i++) {
   d[i] = i;
 }
-
+// n의 값을 반복문을 통해 순회
 for (i = 2; i <= n; i++) {
+  // d[i]의 값과 비교해가며 업데이트 하기 위한 로직. j*j전까지로 하여 범위를 지정.
   for (j = 2; j * j <= i; j++) {
     d[i] = Math.min(d[i], d[i - j * j] + 1);
   }
