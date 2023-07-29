@@ -35,6 +35,7 @@ input.forEach((v, i) => {
     dp[i] = best + input[i];
   }
 });
+console.log(dp);
 console.log(Math.max(...dp));
 
 /* 이전 풀이를 참고하여 아이디어를 얻고 나서 쉽게 풀 수 있었다. 

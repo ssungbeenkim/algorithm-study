@@ -62,7 +62,6 @@ input.forEach((v, i) => {
     dp[i] = best + 1;
   }
 });
-
 console.log(Math.max(...dp));
 
 /* 문제의 아이디어를 얻어서 잘 풀었는데 조금 복잡하게 코드를 적은것이 아닌지 생각이 들어 
