@@ -81,7 +81,6 @@ sum + nums < 0 이면 sum을 0 으로 초기화 해 주어 다음 값부터 계�
     .split(/\s/)
     .map(Number);
   let ans = input[0];
-
   let sum = ans < 0 ? 0 : ans;
 
   for (let i = 1; i < n; i++) {
@@ -94,6 +93,25 @@ sum + nums < 0 이면 sum을 0 으로 초기화 해 주어 다음 값부터 계�
     } else {
       sum = cur;
     }
+  }
+
+  console.log(ans);
+}
+
+{
+  const [n, ...input] = `10
+  10 -4 3 1 5 6 -35 12 21 -1`
+    .split(/\s/)
+    .map(Number);
+  let ans = input[0];
+  let sum = ans < 0 ? 0 : ans;
+
+  for (let i = 1; i < n; i++) {
+    const cur = sum + input[i];
+    if (ans < cur) {
+      ans = cur;
+    }
+    sum = cur < 0 ? 0 : cur;
   }
 
   console.log(ans);

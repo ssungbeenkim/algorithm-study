@@ -1,5 +1,7 @@
 # 백준 알고리즘 문제 풀이
 
+https://www.acmicpc.net/user/nwd1583
+
 ## 풀이
 
 ### Step 1: 단계별 풀이 - 정렬까지 풀이
