@@ -153,7 +153,6 @@ console.log(searchDiff < diff ? searchDiff : diff);
 `
     .trim()
     .split('\n');
-
   const brokens = nums
     ? nums.split(' ').reduce((acc, v) => {
         acc[v] = true;
@@ -161,25 +160,18 @@ console.log(searchDiff < diff ? searchDiff : diff);
       }, {})
     : {};
   let count = Math.abs(100 - N);
-
   for (let i = 0; i < 1_000_000; i++) {
     const numString = i.toString();
     let isValid = true;
-    // 유효한 수인지 검사.
     for (let j = 0; j < numString.length; j++) {
       if (brokens[numString[j]]) {
         isValid = false;
         break;
       }
     }
-    // 유효한 수인 경우 count와 비교해서 업데이트.
-    // 0인 경우 모든 수가 유효하게 들어오므로 수의 문자열 길이가 가장 작은값이 될 것임.
-    // 모든게 고장난 경우 모든 수가 유효하지 않고 count를 업데이트 할 수 없고 +-로 이동한 값.
-    //
     if (isValid) {
       count = Math.min(count, Math.abs(i - N) + numString.length);
     }
   }
-
   console.log(count);
 }
