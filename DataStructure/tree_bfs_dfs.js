@@ -1,6 +1,5 @@
-// 기본적인 이진트리의 형태.
+// 기본적인 이진트리의 형태와 dfs 알고리즘.
 // https://www.youtube.com/watch?v=P8gbyzHZgfY
-//
 /* 서비스에서 필요한 자료형태를 만들어 쓸 일이 생길 것이다. 그때 유용하게 사용되곤 함.  */
 {
   const binaryTree = {
@@ -115,11 +114,48 @@ class Tree {
       }
     }
   }
+  DFS() {
+    let results = [];
+    let stack = [this.root];
+
+    while (stack.length !== 0) {
+      let current = stack.pop();
+      if (current.right) {
+        stack.push(current.right);
+      }
+      if (current.left) {
+        stack.push(current.left);
+      }
+      results.push(current.data);
+    }
+    return results;
+  }
+
+  BFS() {
+    let results = [];
+    let queue = [this.root];
+
+    while (queue.length !== 0) {
+      let current = queue.shift();
+      if (current.left) {
+        queue.push(current.left);
+      }
+      if (current.right) {
+        queue.push(current.right);
+      }
+      results.push(current.data);
+    }
+    return results;
+  }
 }
 
-const tree = new Tree(0);
-tree.insert(2);
+const tree = new Tree(5);
+tree.insert(3);
+tree.insert(8);
 tree.insert(1);
-tree.insert(-1);
-tree.insert(-1000);
-console.dir(tree, { depth: null });
+tree.insert(4);
+tree.insert(6);
+tree.insert(9);
+// console.dir(tree, { depth: null });
+console.log(tree.DFS());
+console.log(tree.BFS());

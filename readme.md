@@ -1,4 +1,4 @@
-# 백준 알고리즘 문제 풀이북
+# 백준 알고리즘 문제 풀이
 
 https://www.acmicpc.net/user/nwd1583
 
@@ -6,11 +6,13 @@ https://www.acmicpc.net/user/nwd1583
 
 ### Step 1: 단계별 풀이 - 정렬까지 풀이
 
-- 백준의 [단계별 풀이](https://www.acmicpc.net/step)에서 정렬까지의 문제들을 푼다. 0607완료
+- 백준의 [단계별 풀이](https://www.acmicpc.net/step)에서 정렬까지의 문제들을 푼다.  
+  0607완
 
 ### Step 2: 알고리즘 기초 1/2
 
 - 백준의 [알고리즘 기초강의 1/2](https://code.plus/course/41)에 '포함되어 있는 문제' 를 순서대로 푼다.
+  0801완
 
 ### Step 3: 알고리즘 기초 2/2
 
