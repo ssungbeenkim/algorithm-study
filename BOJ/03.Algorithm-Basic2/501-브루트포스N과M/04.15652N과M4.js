@@ -1,5 +1,6 @@
 /* 
-이번에는 첫번째 문제에서 중복을 허용한다. 
+비내림차순 조건이 추가된 것이다. 같거나 큰것만 들어가면 되고, 
+그러므로 이전에 오름차순으로 구했던 것에서 첫번째 값의 조건이 필요없어진다. 
 */
 const [n, m] = `4 2`.trim().split(/\s/).map(Number);
 
@@ -14,8 +15,10 @@ function fillLine() {
     return;
   }
   for (let i = 1; i <= n; i++) {
-    s.push(i);
-    fillLine();
-    s.pop();
+    if (s.length === 0 || s.at(-1) <= i) {
+      s.push(i);
+      fillLine();
+      s.pop();
+    }
   }
 }
