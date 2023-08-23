@@ -1,1 +1,1 @@
-cur
+console.log(arr2);

@@ -63,7 +63,7 @@ dfs, 백트랙킹과 관련이 있다고 한다.
 /* 간단히 해결할 수 있었다. 충분히 로직이 이해가 되지만 백트레킹이나 DFS에 대해 이해하고 넘어가자.  */
 
 {
-  const [n, m] = `4 2`.trim().split(/\s/).map(Number);
+  const [n, m] = `4 4`.trim().split(/\s/).map(Number);
 
   const answer = [];
   const s = [];
