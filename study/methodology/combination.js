@@ -26,20 +26,20 @@
 {
   // generator와 재귀로 조합 생성
 
-  const combinations = function* (elements, selectNumber) {
+  const getCombinations = function* (elements, selectNumber) {
     for (let i = 0; i < elements.length; i++) {
       if (selectNumber === 1) {
         yield [elements[i]];
       } else {
         const fixed = elements[i];
         const rest = elements.slice(i + 1);
-        for (const a of combinations(rest, selectNumber - 1)) {
+        for (const a of getCombinations(rest, selectNumber - 1)) {
           yield [fixed, ...a];
         }
       }
     }
   };
 
-  const combi = combinations(['a', 'b', 'c'], 2);
+  const combi = getCombinations(['a', 'b', 'c'], 2);
   console.log(...combi);
 }
