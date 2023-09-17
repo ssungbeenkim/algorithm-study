@@ -82,9 +82,9 @@
   const iSCount = Number(n);
 
   const isUsed = new Array(10).fill(0);
+  // isUsed는 각 호출까지 사용된 적이 있는 수를 기억한다.
   const yes = 1;
   const no = 0;
-  // visited는 각 재귀 호출에서 사용되었던 값을 기억한다.
   let maxStr = `${Number.MIN_SAFE_INTEGER}`;
   let minStr = `${Number.MAX_SAFE_INTEGER}`;
 
