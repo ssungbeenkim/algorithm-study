@@ -216,3 +216,68 @@
 => 바꾼게 더 오래걸린다. 다른 방법이 필요한듯. 
 일단 스링 문제에서 점수 계산 부분만 바꿔서 제출해 보도록 한다. 
  */
+
+// 저장해 두지 않고 바로바로 계산해서 업데이트 하도록 코드 변경
+{
+  const [n, ...matLines] = `6
+  0 1 2 3 4 5
+  1 0 2 3 4 5
+  1 2 0 3 4 5
+  1 2 3 0 4 5
+  1 2 3 4 0 5
+  1 2 3 4 5 0`
+    .trim()
+    .split('\n');
+  const mat = matLines.map((v) => v.split(' ').map(Number));
+  const backNums = getBackNumbers();
+  let minDiff = Number.MAX_SAFE_INTEGER;
+  const sTeamCombi = getCombinations(backNums, n / 2);
+  for (c of sTeamCombi) {
+    updateMinDiff(c);
+  }
+  console.log(minDiff);
+
+  function getBackNumbers() {
+    const backNums = [];
+    for (let i = 0; i < n; i++) {
+      backNums.push(i);
+    }
+    return backNums;
+  }
+
+  function* getCombinations(elements, selectNumber) {
+    for (let i = 0; i < elements.length; i++) {
+      if (selectNumber === 1) {
+        yield [elements[i]];
+      } else {
+        const fixed = elements[i];
+        const rest = elements.slice(i + 1);
+        for (const a of getCombinations(rest, selectNumber - 1)) {
+          yield [fixed, ...a];
+        }
+      }
+    }
+  }
+
+  function updateMinDiff(start) {
+    const link = [];
+    for (let i = 0; i < n; i++) {
+      if (!start.includes(i)) {
+        link.push(i);
+      }
+    }
+    const startA = getAbility(start);
+    const linkA = getAbility(link);
+    minDiff = Math.min(Math.abs(startA - linkA), minDiff);
+  }
+
+  function getAbility(team) {
+    let ability = 0;
+    for (let i = 0; i < team.length; i++) {
+      for (let j = i + 1; j < team.length; j++) {
+        ability += mat[team[i]][team[j]] + mat[team[j]][team[i]];
+      }
+    }
+    return ability;
+  }
+}
