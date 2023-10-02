@@ -37,6 +37,6 @@
     }
   };
 
-  const combi = permutations(['a', 'b', 'c', 'd'], 3);
-  console.log(...combi);
+  const permu = permutations(['a', 'b', 'c', 'd'], 3);
+  console.log(...permu);
 }
