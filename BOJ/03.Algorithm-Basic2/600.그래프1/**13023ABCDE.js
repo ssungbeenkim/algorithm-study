@@ -126,14 +126,15 @@ try 1
   function dfs(cur, checkedCount) {
     if (flag) return;
     if (checkedCount === 4) {
-      // 4개의 노드까지 다음 값과 이어져 있는것이 확인되었으므로 5개의 값이 연속적으로 이어져 있는것.
+      // 4개의 노드까지 다음 값과 이어져 있었고. 그 값을 넘겨받았으므로
+      // 확인되었으므로 5개의 값이 연속적으로 이어져 있는것.
       flag = 1;
       return;
     }
 
     for (let next = 0; next < n; next++) {
       // 현재 인덱스의 adj 인덱스 리스트에 다음값이 있는지 확인.
-      // 다음값은 방문하지 않은 곳이 들어올 수 있으며
+      // 다음값에는 방문하지 않은 값만이 들어올 수 있으며
       // dfs에 넘기는 다음값은 현재 값과 이어져 있는 값만 넘긴다.
       if (isChecked[next]) continue;
       if (adjacentList[cur].includes(next)) {
@@ -143,4 +144,47 @@ try 1
       }
     }
   }
+}
+// 관계는 최대 2000개까지 들어올 수 있다. includes 에서 확인할 때, 최대 2000*2000을 확인해야 하므로 시간초과가 나는 것 같다.
+
+// 정답
+{
+  const input = `5 4 
+  0 1
+  1 2
+  2 3
+  3 4`.split('\n');
+  const [N, M] = input[0].split(' ').map((v) => +v);
+  const adjArr = Array.from({ length: N }, () => Array(0));
+  const checked = new Array(N).fill(0);
+  let unoBell = 0;
+
+  for (let i = 1; i <= M; i++) {
+    const [a, b] = input[i].split(' ').map((v) => +v);
+    adjArr[a].push(b);
+    adjArr[b].push(a);
+  } // 인접리스트에 a->b, b->a 관계를 각각 넣어준다.
+
+  for (let i = 0; i < N; i++) {
+    dfs(i, 0); // 처음 방문할 노드를 선택한다.
+  }
+
+  function dfs(L, cnt) {
+    if (unoBell) return;
+    checked[L] = 1;
+    if (cnt === 4) {
+      unoBell = 1;
+      return;
+    }
+
+    for (let i = 0; i < adjArr[L].length; i++) {
+      const next = adjArr[L][i];
+      if (!checked[next]) {
+        dfs(next, cnt + 1); // 방문하지 않았던 연결된 노드로 cnt+1과 함께 dfs를 호출한다.
+      }
+    }
+    checked[L] = 0; // 방문했던 노드는 다시 미방문 처리한다.
+  }
+
+  console.log(unoBell);
 }
