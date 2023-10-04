@@ -3,5 +3,9 @@
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#8eb4ffed",
     "titleBar.inactiveBackground": "#8eb4ffed"
-  }
+  },
+  "github.copilot.editor.enableCodeActions": false,
+  "github.copilot.editor.enableAutoCompletions": false,
+  "github.copilot.inlineSuggest.enable": false,
+  "github.copilot.editor.iterativeFixing": false
 }
