@@ -49,7 +49,7 @@ dfs(s);
 console.log(dfsResult.join(' '));
 
 // bfs
-// 큐 선언 (순서 확인해보기)
+// 큐 선언
 
 class Queue {
   constructor() {
@@ -105,4 +105,4 @@ while (q.size()) {
 }
 console.log(bfsResult.join(' '));
 
-// BFS를 처음 적용해본 문제. 채점도 굉장히 빨랐다.
+// BFS를 처음 적용해본 문제. 채점도 굉장히 빨랐다. 굳
