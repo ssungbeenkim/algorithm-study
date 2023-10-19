@@ -188,6 +188,3 @@ try 1
 
   console.log(unoBell);
 }
-
-// bfs
-// 큐 구현

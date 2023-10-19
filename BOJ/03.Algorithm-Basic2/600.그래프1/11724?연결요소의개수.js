@@ -122,3 +122,53 @@
 // 혹시 간선이 0개일 때가 문제가 되는지 싶었는데 동일하게 틀림
 
 // 올바른 풀이를 참고해서 풀어보도록 하자
+
+//DFS로 풀이
+
+{
+  const [input, ...inputs] = `6 5
+1 2
+2 5
+5 1
+3 4
+4 6`
+    .trim()
+    .split('\n');
+
+  const [n, m] = input.split(' ').map(Number);
+  const adjList = Array.from({ length: n + 1 }, () => Array(0));
+  for (let i = 0; i < inputs.length; i++) {
+    let [a, b] = inputs[i].split(' ').map((e) => +e);
+    adjList[a].push(b);
+    adjList[b].push(a);
+  }
+  const visited = new Array(n + 1).fill(0);
+  let cnt = 0;
+
+  for (let i = 1; i <= n; i++) {
+    if (!visited[i]) {
+      DFS(i);
+      cnt++;
+    }
+  }
+
+  console.log(cnt);
+
+  function DFS(v) {
+    if (visited[v]) return;
+    visited[v] = 1;
+    for (let i = 0; i < adjList[v].length; i++) {
+      if (!visited[adjList[v][i]]) {
+        DFS(adjList[v][i]);
+      }
+    }
+  }
+}
+/* 연결 요소를 따라가며 하나의 연결 요소에 해당하는 방문을 모두 체크하게 된다.
+그렇게 카운트를 해서 정답을 찾게 됨
+근데 의문인 것은 1 0 처럼 간선의 개수가 0이 되는 경우에는 연결 요소가 없는것 같은데
+1을 출력하는 위의 코드가 정답이 되는 것이 왜 그런지 궁금하다.
+일단 질문을 남겨 두었다.
+dfs에 대한 막연한 어려움이 있는 것 같다. 더 적극적으로 적응해보는 노력이 필요
+*/
+
