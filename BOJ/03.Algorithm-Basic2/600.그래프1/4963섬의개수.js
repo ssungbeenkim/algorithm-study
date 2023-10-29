@@ -30,14 +30,17 @@ const inputLines = `1 1
 0 0`
   .trim()
   .split('\n');
+// 입력 라인을 추적
 let curLine = 0;
+// 최종 답안을 담을 배열
 const answerArr = [];
+// 케이스마다 업데이트하며 사용할 변수들
 let visited;
 let island = 0;
 let curMap;
 let col;
 let row;
-
+// 케이스별로 map을 만들어서 updateAnserArr 호출
 while (curLine < inputLines.length) {
   const [c, r] = inputLines[curLine].split(' ').map(Number);
   if (c == 0 && r == 0) break;
@@ -48,8 +51,10 @@ while (curLine < inputLines.length) {
   updateAnswerArr(c, r, map);
   curLine++;
 }
+
 console.log(answerArr.join('\n'));
 
+// 변수들을 세팅하고 dfs를 호출
 function updateAnswerArr(c, r, map) {
   visited = Array.from({ length: r }, () => Array(c).fill(0));
   island = 0;
@@ -70,6 +75,7 @@ function updateAnswerArr(c, r, map) {
   answerArr.push(island);
 }
 
+// 연결된 섬들을 체크
 function dfs(i, j) {
   visited[i][j] = 1;
   for (let x = i - 1; x <= i + 1; x++) {
@@ -78,9 +84,7 @@ function dfs(i, j) {
       if (visited[x][y]) continue;
       if (curMap[x][y]) {
         dfs(x, y);
-      } else {
-        visited[x][y] = 1;
-      }
+      } 
     }
   }
 }
