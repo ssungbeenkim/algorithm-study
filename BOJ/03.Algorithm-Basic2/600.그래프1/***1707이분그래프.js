@@ -107,7 +107,3 @@ test case는 5개가 최대이고, 각 케이스에서 정점은 2만개, 간선
 
   adjs.forEach(print);
 }
-
-/* 
-
-*/
