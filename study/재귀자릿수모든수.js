@@ -12,6 +12,6 @@ function AllCombinations(digits, n, currentNumber) {
 }
 
 const digits = [0, 1, 9];
-const n = 2; // 원하는 자리수를 입력하세요!
+const n = 2; // 원하는 자리수를 입력하세요!!
 
 AllCombinations(digits, n, '');
